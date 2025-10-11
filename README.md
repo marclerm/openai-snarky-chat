@@ -40,6 +40,12 @@ A full-stack sample using **.NET 8 (Web API)** and **React + TypeScript** to bui
    cd client
    npm install
    ```
+### ⚙️ React Dev Server (Vite)
+
+The **React client** uses **[Vite](https://vitejs.dev/)** as its development server and build tool.  
+Vite is a modern alternative to Create React App — it provides **instant startup**, **hot module reloading**, and **faster builds** using native ES modules.
+
+Vite launches a local development server (by default at http://localhost:5173) and **automatically refreshes the browser** whenever you change your React files.
 
 5. **Start the dev server**
    ```bash
@@ -73,11 +79,10 @@ You can customize this text to change the assistant’s behavior or tone.
 openai-snarky-chat/
 ├─ SnarkyChat.Api/           # ASP.NET Core 8 Web API
 │  ├─ Controllers/
-│  │  └─ LlmController.cs    # Handles /api/llm/chat and /api/llm/stream
+│  │  └─ ChatLlmController.cs    # Handles /api/llm/chat and /api/llm/stream
 │  ├─ Services/
-│  │  ├─ LlmClientService.cs # Non-streaming chat service
-│  │  └─ LlmStreamService.cs # Streaming (SSE) chat service
-│  ├─ appsettings.json
+│  │  ├─ LlmClientService.cs # LLM chat service
+│  ├─ appsettings.json      # using "gpt-4o-mini" model as today, can be updated to a more recent model
 │  └─ Program.cs
 │
 ├─ client/                   # React + TypeScript front-end
@@ -88,7 +93,7 @@ openai-snarky-chat/
 │  │  │  └─ ChatStream.tsx   # Streaming chat UI
 │  │  ├─ App.tsx             # Tabbed layout (Chat / ChatStream)
 │  │  ├─ main.tsx
-│  │  └─ styles.css
+│  │  └─ styles.css          # some basic css styles
 │  ├─ package.json
 │  └─ vite.config.ts
 │

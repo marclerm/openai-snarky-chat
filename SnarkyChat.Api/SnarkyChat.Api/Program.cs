@@ -5,7 +5,10 @@ using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add the User Secrets in development to get access to the API key
 builder.Configuration.AddUserSecrets<Program>();
+
+// Configure OpenAI options from config section to get access to model name and base URL
 builder.Services.Configure<OpenAIOptions>(
     builder.Configuration.GetSection("OpenAI"));
 
@@ -25,10 +28,15 @@ builder.Services.AddHttpClient("openai", (sp, client) =>
 
     if (string.IsNullOrWhiteSpace(apiKey))
         throw new InvalidOperationException("OPENAI_API_KEY not configured.");
+
+    // Set the auth header for all requests made with this client instance to the OpenAI API
+    // This is a Bearer token as per OpenAI spec (https://platform.openai.com/docs/api-reference/authentication)
+    // We could also use client.DefaultRequestHeaders.Add("Authorization ...") but this is cleaner and more explicit
     client.DefaultRequestHeaders.Authorization =
         new AuthenticationHeaderValue("Bearer", apiKey);
 });
 
+// CORS for React dev server
 const string CorsPolicy = "ReactDev";
 builder.Services.AddCors(o =>
 {
@@ -39,7 +47,7 @@ builder.Services.AddCors(o =>
     );
 });
 
-// App services
+// Application services
 builder.Services.AddScoped<LlmClientService>();
 
 builder.Services.AddControllers();
@@ -47,9 +55,10 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-
+// Enable CORS
 app.UseCors(CorsPolicy);
 
+// Some default configuration created by VS
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
