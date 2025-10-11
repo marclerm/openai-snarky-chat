@@ -12,7 +12,7 @@ A full-stack sample using **.NET 8 (Web API)** and **React + TypeScript** to bui
 1. **Get an OpenAI API Key**
    - Log into [OpenAI → API Keys](https://platform.openai.com/account/api-keys)
    - Create a new secret key (it starts with `sk-...`).
-   - ⚠️ *Note:* You may need to **add at least $5 USD** to your OpenAI account (the minimum top-up) to enable API access.  
+   - ⚠️ *Note:* You may need to **add at least $5 USD** to your OpenAI Credit balance (the minimum top-up) to enable API access.  
      This amount is usually enough for testing and small-scale experimentation.
 
 2. **Store the API Key securely using User Secrets**
