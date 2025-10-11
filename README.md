@@ -1,13 +1,13 @@
 # openai-snarky-chat
 🧠 A snarky AI chat built with OpenAI, .NET, and React
 
-A full-stack sample using **.NET 8 (Web API)** and **React + TypeScript** to build a chat UI powered by OpenAI’s API — featuring both **non-streaming** and **streaming (real-time)** chat modes.
+A full-stack sample using **.NET 9 (Web API)** and **React + TypeScript** to build a chat UI powered by OpenAI’s API — featuring both **non-streaming** and **streaming (real-time)** chat modes.
 
 ---
 
 ## 🧰 Prerequisites & Setup
 
-### **Backend (.NET 8 API)**
+### **Backend (.NET 9 API)**
 
 1. **Get an OpenAI API Key**
    - Log into [OpenAI → API Keys](https://platform.openai.com/account/api-keys)
@@ -77,7 +77,7 @@ You can customize this text to change the assistant’s behavior or tone.
 
 ```
 openai-snarky-chat/
-├─ SnarkyChat.Api/           # ASP.NET Core 8 Web API
+├─ SnarkyChat.Api/           # ASP.NET Core 9 Web API
 │  ├─ Controllers/
 │  │  └─ ChatLlmController.cs    # Handles /api/llm/chat and /api/llm/stream
 │  ├─ Services/
