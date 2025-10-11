@@ -1,0 +1,16 @@
+@SnarkyChat.Api_HostAddress = http://localhost:5199
+
+### Chat with LLM (non-streaming)
+POST {{SnarkyChat.Api_HostAddress}}/api/llm/chat
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userMessage": "Pretend you’re my future self. What advice do you have for me?"
+}
+
+###
+
+GET {{SnarkyChat.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+###
