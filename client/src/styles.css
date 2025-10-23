@@ -1,15 +1,66 @@
 :root { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
-.container { max-width: 860px; margin: 2rem auto; padding: 0 1rem; }
-.chat-shell { display: flex; flex-direction: column; gap: .75rem; }
-.chat-header { font-weight: 600; font-size: 1.1rem; }
-.chat-window { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 65vh; overflow-y: auto; background: #fafafa; }
-.bubble { max-width: 75%; padding: .6rem .8rem; border-radius: 12px; margin: .25rem 0; white-space: pre-wrap; }
-.from-user { background: #e6f0ff; margin-left: auto; }
-.from-bot  { background: #fff; border: 1px solid #eee; }
-.typing { opacity: .7; font-style: italic; }
-.composer { display: flex; gap: .5rem; }
-.composer textarea { flex: 1; min-height: 64px; resize: vertical; padding: .5rem; }
+.container { 
+  max-width: 860px; 
+  margin: 2rem auto; 
+  padding: 0 1rem; 
+}
+.chat-shell { 
+  display: flex; 
+  flex-direction: column; 
+  gap: .75rem; 
+}
+.chat-header { 
+  font-weight: 600; 
+  font-size: 1.1rem; 
+}
+.chat-window { 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 1rem; 
+  height: 65vh; 
+  overflow-y: auto; 
+  background: #fafafa; 
+}
+.bubble { 
+  max-width: 75%; 
+  padding: .6rem .8rem; 
+  border-radius: 12px; 
+  margin: .25rem 0; 
+  white-space: pre-wrap; 
+}
+.from-user { 
+  background: #e6f0ff; 
+  margin-left: auto; 
+}
+.from-bot  { 
+  background: #fff; 
+  border: 1px solid #eee; 
+}
+.typing { 
+  opacity: .7; 
+  font-style: italic; 
+}
+.composer { 
+  display: flex; 
+  gap: .5rem; 
+}
+.composer textarea { 
+  flex: 1; 
+  min-height: 64px; 
+  resize: vertical; 
+  padding: .5rem; 
+}
+.temp-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  margin-bottom: "1rem";
 
+  input{
+    width: 100%;
+  }
+}
 
 /* tabs  */
 /* existing styles… */
@@ -17,7 +68,10 @@
 .title { margin-bottom: 0.5rem; }
 
 .tabs {
-  display: flex; gap: .25rem; border-bottom: 1px solid #ddd; margin-bottom: .75rem;
+  display: flex; 
+  gap: .25rem; 
+  border-bottom: 1px solid #ddd; 
+  margin-bottom: .75rem;
 }
 .tab {
   border: 1px solid transparent;
@@ -26,13 +80,17 @@
   padding: .5rem .8rem;
   cursor: pointer;
   font-weight: 600;
-  border-top-left-radius: .5rem; border-top-right-radius: .5rem;
+  border-top-left-radius: .5rem; 
+  border-top-right-radius: .5rem;
 }
 .tab.active {
   background: #fff;
   border-color: #ddd;
   border-bottom: 1px solid #fff;
 }
-.tab:focus-visible { outline: 2px solid #6aa8ff; outline-offset: 2px; }
+.tab:focus-visible { 
+  outline: 2px solid #6aa8ff; 
+  outline-offset: 2px; 
+}
 
 .tab-panel { padding-top: .5rem; }

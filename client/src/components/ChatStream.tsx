@@ -3,7 +3,7 @@ import { streamAsync } from "../api/client";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-export default function ChatStream() {
+export default function ChatStream({ temperature }: { temperature: number }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -18,14 +18,20 @@ export default function ChatStream() {
     if (!prompt || busy) return;
 
     // add user message and placeholder for streaming assistant reply
-    setMessages((m) => [...m, { role: "user", content: prompt }, { role: "assistant", content: "" }]);
+    //setMessages((m) => [...m, { role: "user", content: prompt }, { role: "assistant", content: "" }]);
+    const newMessages: Msg[] = [...messages, { role: "user", content: prompt }];
+    setMessages(newMessages);
     setText("");
     setBusy(true);
     const botIndex = messages.length + 1;
 
     try {
       await streamAsync(
-        { userMessage: prompt },
+        {
+          userMessage: prompt,
+          messages: newMessages.map(m => ({ role: m.role, content: m.content })),
+          temperature: temperature
+        },
         (token) => {
           setMessages(m => {
                 if (botIndex < 0 || botIndex >= m.length) return m;        // guard

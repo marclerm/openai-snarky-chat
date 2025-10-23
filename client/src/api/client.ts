@@ -1,4 +1,10 @@
-export type ChatRequest = { userMessage: string; systemPrompt?: string; model?: string; temperature?: number };
+export type ChatRequest = { 
+  userMessage: string; 
+  systemPrompt?: string; 
+  model?: string; 
+  temperature?: number; 
+  messages: { role: "user" | "assistant"; content: string; }[] 
+};
 
 const BASE = import.meta.env.VITE_API_BASE_URL ?? ""; // e.g. "", "http://localhost:5001"
 

@@ -3,7 +3,7 @@ import { askAsync } from "../api/client";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-export default function Chat() {
+export default function Chat({ temperature }: { temperature: number }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -14,14 +14,21 @@ export default function Chat() {
   async function send() {
     const prompt = text.trim();
     if (!prompt || busy) return;
-    setMessages(m => [...m, { role: "user", content: prompt }]);
+
+    const newMessages: Msg[] = [...messages, { role: "user", content: prompt }];
+    setMessages(newMessages);
     setText("");
     setBusy(true);
+    
     try {
-      const reply = await askAsync({ userMessage: prompt });
-      setMessages(m => [...m, { role: "assistant", content: reply }]);
+      const reply = await askAsync({ 
+        userMessage: prompt, 
+        messages: newMessages.map(m => ({ role: m.role, content: m.content })),
+        temperature: temperature
+      });
+      setMessages([...newMessages, { role: "assistant", content: reply }]);
     } catch (e: any) {
-      setMessages(m => [...m, { role: "assistant", content: `(Error) ${e?.message ?? e}` }]);
+      setMessages([...newMessages, { role: "assistant", content: `(Error) ${e?.message ?? e}` }]);
     } finally { setBusy(false); }
   }
 

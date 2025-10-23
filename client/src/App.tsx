@@ -7,10 +7,20 @@ type TabKey = "nonstream" | "stream";
 
 export default function App() {
   const [tab, setTab] = useState<TabKey>("nonstream");
+  const [chatTemperature, setChatTemperature] = useState(0.2);
 
   return (
     <div className="container">
       <h1 className="title">OpenAI Snarky Chat</h1>
+
+      <div className="temp-control" style={{ marginBottom: "1rem" }}>
+          <label htmlFor="temp">🧠 How creative you want the response from AI?: <br/>
+          <strong>Current: {chatTemperature.toFixed(1)}</strong> </label>
+          <input id="temp" type="range" min="0" max="1" step="0.1"
+            value={chatTemperature}
+            onChange={(e) => setChatTemperature(parseFloat(e.target.value))}
+          />
+      </div> 
 
       <div className="tabs" role="tablist" aria-label="Chat modes">
         <button
@@ -42,7 +52,7 @@ export default function App() {
         hidden={tab !== "nonstream"}
         className="tab-panel"
       >
-        <Chat />
+        <Chat temperature={chatTemperature} />
       </section>
 
       <section
@@ -52,7 +62,7 @@ export default function App() {
         hidden={tab !== "stream"}
         className="tab-panel"
       >
-        <ChatStream />
+        <ChatStream temperature={chatTemperature} />
       </section>
     </div>
   );

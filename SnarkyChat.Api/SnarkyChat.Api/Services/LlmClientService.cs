@@ -24,14 +24,24 @@ namespace SnarkyChat.Api.Services
         /// <returns></returns>
         internal async Task<string> ChatAsync(ChatRequest request, CancellationToken ct = default)
         {
+            var model = string.IsNullOrWhiteSpace(request.Model) ? _opts.Model : request.Model;
+            var messages = new List<object>
+            {
+                new { role = "system", content = GetSystemPrompt() }
+            };
+
+            if(request.Messages != null)
+            {
+                foreach(var msg in request.Messages)
+                {
+                    messages.Add(new { role = msg.role, content = msg.content });
+                }
+            }
+
             var body = new
             {
-                model = string.IsNullOrWhiteSpace(request.Model) ? _opts.Model : request.Model,
-                messages = new object[]
-                {
-                new { role = "system", content = GetSystemPrompt() },
-                new { role = "user", content = request.UserMessage }
-                },
+                model,
+                messages,
                 temperature = request.Temperature ?? 0.2
             };
 

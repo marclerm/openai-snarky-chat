@@ -6,6 +6,7 @@
         //public string? SystemPrompt { get; set; }
         public string? Model { get; set; }
         public double? Temperature { get; set; }
+        public List<ChatCompletionResponse.Message> Messages { get; set; } = new();
     }
 
     public class ChatCompletionResponse
@@ -17,7 +18,7 @@
         }
         public class Message
         {
-            public string? role { get; set; }
+            public string? role { get; set; } = "user";
             public string? content { get; set; }
         }
     }
